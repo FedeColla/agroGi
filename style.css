@@ -515,6 +515,10 @@ h4{
     height: auto;
 }
 
+.informacion .description{
+    max-width: 30em;
+}
+
 ul li{
     font-size: 1.5em;
     font-weight: 600;
@@ -551,6 +555,79 @@ ul li{
     color: var(--color-blanco);
     background-color: var(--color-ws-active);
 }
+
+/* FORM*/
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.08em;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc; /* Borde por defecto */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input.error {
+    border-color: red; /* Borde en rojo para errores */
+}
+
+input:focus {
+    border-color: #007BFF; /* Color del borde al enfocar */
+}
+
+.error {
+    color: red;
+    font-size: 0.875em;
+    height: auto;
+    padding-bottom: 1em;
+}
+
+.submit {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color-primario);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+}
+
+.submit:hover {
+    background-color: var(--color-ws);
+}
+
+input::placeholder {
+    font-style: italic;
+    color: #888; 
+}
+
+
+
 
 footer{
     display: flex;
@@ -669,7 +746,7 @@ footer img{
     height: 41px;
 }
 
-button {
+.button_carousel {
     position: absolute;
     top: 50%;
     background-color: rgba(31, 31, 31, 0.32);
@@ -710,6 +787,9 @@ button {
     }
     .reserva{
         gap: 2em;
+    }
+    .form-container {
+        max-width: 100%;
     }
 }
 

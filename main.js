@@ -105,3 +105,83 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llama a la función una vez para detectar las secciones que ya están en la vista al cargar la página
     handleScroll();
 });
+
+
+
+
+// Inicializa EmailJS con tu Public Key
+(function() {
+    emailjs.init('D9ohq1cBqCzmFWTkb'); // Reemplaza con tu Public Key
+})();
+
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    let isValid = true;
+
+    // Obtener los valores del formulario
+    const firstName = document.getElementById('first-name').value.trim();
+    const lastName = document.getElementById('last-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    // Resetear errores
+    document.querySelectorAll('.error').forEach(error => error.textContent = '');
+    document.querySelectorAll('input').forEach(input => input.classList.remove('error')); // Limpiar clases de error
+
+    // Validar campos
+    if (firstName === '') {
+        document.getElementById('error-first-name').textContent = 'Este campo es obligatorio.';
+        document.getElementById('first-name').classList.add('error'); // Agregar clase de error
+        isValid = false;
+    }
+    if (lastName === '') {
+        document.getElementById('error-last-name').textContent = 'Este campo es obligatorio.';
+        document.getElementById('last-name').classList.add('error'); // Agregar clase de error
+        isValid = false;
+    }
+    if (email === '' || !/\S+@\S+\.\S+/.test(email)) {
+        document.getElementById('error-email').textContent = 'Por favor ingrese un email válido.';
+        document.getElementById('email').classList.add('error'); // Agregar clase de error
+        isValid = false;
+    }
+    if (phone === '' || !/^\+?\d{1,3}?[-.\s]?(\d{10})$/.test(phone)) {
+        document.getElementById('error-phone').textContent = 'Por favor ingrese un número de teléfono válido, que puede incluir el prefijo de país.';
+        document.getElementById('phone').classList.add('error'); // Agregar clase de error
+        isValid = false;
+    }
+
+    if (isValid) {
+        // Enviar el formulario por correo electrónico usando EmailJS
+        emailjs.send('service_o9thf3v', 'template_bqh8jsb', {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phone: phone,
+            to_name: 'AgroGI', // Reemplaza con el nombre real
+            from_name: firstName + ' ' + lastName // Nombre completo
+        }, 'D9ohq1cBqCzmFWTkb') // Public Key
+        .then(function(response) {
+            console.log('Correo enviado con éxito:', response);
+            window.open('https://chat.whatsapp.com/LsU3ymA3nUTEMxau5hJEdp', '_blank');
+        })
+        .catch(function(error) {
+            console.error('Error al enviar el correo:', error);
+        });
+    }
+});
+
+// Agregar evento click a los labels para borrar el valor de los inputs
+document.querySelector('label[for="phone"]').addEventListener('click', function() {
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput.value === 'Ejemplo: +5492364260929') {
+        phoneInput.value = '';
+    }
+});
+
+document.querySelector('label[for="email"]').addEventListener('click', function() {
+    const emailInput = document.getElementById('email');
+    if (emailInput.value === 'Ejemplo: nombre@dominio.com') {
+        emailInput.value = '';
+    }
+});
