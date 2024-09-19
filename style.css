@@ -189,7 +189,7 @@ main{
 }
 
 h1{
-    font-size: clamp(1.5em, 5vw ,5em);
+    font-size: clamp(1.6em, 5vw ,5em);
     font-weight: 400;
     line-height: 1em;
     width: 15em;
