@@ -191,7 +191,7 @@ h1{
     font-size: clamp(2em, 5vw ,5em);
     font-weight: 400;
     line-height: 1em;
-    width: 15em;
+    width: 80%;
     text-align: center;
     color: var(--color-blanco);
 }
@@ -798,6 +798,9 @@ footer img{
     /* body{
         font-size: 60%;
     } */
+    h1{
+        width: 100%;
+    }
     .space_xl{
         padding: 3em 5em;
     }
